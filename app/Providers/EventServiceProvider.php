@@ -7,7 +7,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Console\Events\ScheduledTaskStarting;
+use App\Listeners\SendNotificationToAdmin;
+use App\Listeners\SyncCompletedLogListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -20,11 +21,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        // ScheduledTaskStarting::class => [
-        //     'App\Listeners\ScheduledTaskStarting',
-        // ],
         DbSyncDoneEvent::class => [
-            'App\Listeners\SendNotificationToAdmin',
+            SendNotificationToAdmin::class,
+            SyncCompletedLogListener::class,
         ],
     ];
 
