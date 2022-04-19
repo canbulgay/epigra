@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CapsuleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('capsules', [CapsuleController::class, 'index'])->middleware('auth:sanctum');
+Route::get('capsules/{capsule:capsule_serial}', [CapsuleController::class, 'show'])->middleware('auth:sanctum');
