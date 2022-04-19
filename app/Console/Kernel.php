@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('get:all')->everyThreeMinutes();
+        $schedule->command('get:all')->everyThreeMinutes()->runInBackground();
     }
 
     /**

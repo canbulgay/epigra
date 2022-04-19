@@ -54,6 +54,6 @@ class Capsule extends Model
      */
     public function missions()
     {
-        return $this->hasMany(Mission::class, 'capsule_serial');
+        return $this->hasMany(Mission::class, 'capsule_serial', 'capsule_serial');
     }
 }

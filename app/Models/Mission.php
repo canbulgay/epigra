@@ -28,6 +28,6 @@ class Mission extends Model
 
     public function capsule()
     {
-        return $this->belongsTo(Capsule::class, 'capsule_serial');
+        return $this->belongsTo(Capsule::class, 'capsule_serial', 'capsule_serial');
     }
 }
