@@ -7,5 +7,5 @@ interface CapsuleRepositoryInterface
 {
     public function getAllCapsules();
 
-    public function SyncCapsulesToDb($capsules);
+    public function SyncCapsulesWithDb($capsules);
 }

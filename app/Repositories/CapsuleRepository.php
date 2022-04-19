@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Interfaces\CapsuleRepositoryInterface;
 use App\Models\Capsule;
 use App\Models\Mission;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 
@@ -21,8 +22,10 @@ class CapsuleRepository implements CapsuleRepositoryInterface
         return $capsules->json();
     }
 
-    public function SyncCapsulesToDb($capsules): bool
+    public function SyncCapsulesWithDb($capsules): bool
     {
+        DB::table('capsules')->delete();
+
         foreach ($capsules as $capsule) {
             Capsule::create([
                 'capsule_serial' => $capsule['capsule_serial'],

@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Interfaces\CapsuleRepositoryInterface;
 use Illuminate\Console\Command;
-use App\Events\DbSyncDoneEvent as DbSyncDone;
+use App\Events\DbSyncDoneEvent;
 
 class getAllDataFromSpaceXCommand extends Command
 {
@@ -31,11 +31,11 @@ class getAllDataFromSpaceXCommand extends Command
     {
         $this->info('Ready to get all capsule data from SpaceX Api..');
         $capsulesFromSpaceX = $capsuleRepository->getAllCapsules();
-        $syncCapsulesToDb = $capsuleRepository->SyncCapsulesToDb($capsulesFromSpaceX);
+        $syncCapsulesToDb = $capsuleRepository->SyncCapsulesWithDb($capsulesFromSpaceX);
 
         if ($syncCapsulesToDb) {
             $this->info('All data from SpaceX Api has been synced to database.');
-            DbSyncDone::dispatch($capsulesFromSpaceX);
+            DbSyncDoneEvent::dispatch($capsulesFromSpaceX);
         } else {
             $this->error('Something went wrong while syncing data from SpaceX Api to database.');
         }
