@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Interfaces\CapsuleRepositoryInterface;
+use App\Services\CapsuleService;
 use Illuminate\Console\Command;
-use App\Events\DbSyncDoneEvent;
+use App\Events\DbSyncDoneEvent;;
 
 class getAllDataFromSpaceXCommand extends Command
 {
@@ -27,13 +27,13 @@ class getAllDataFromSpaceXCommand extends Command
      *
      * @return int
      */
-    public function handle(CapsuleRepositoryInterface $capsuleRepository)
+    public function handle(CapsuleService $capsuleService)
     {
         $this->info('Ready to get all capsule data from SpaceX Api..');
-        $capsulesFromSpaceX = $capsuleRepository->getAllCapsules();
-        $syncCapsulesToDb = $capsuleRepository->SyncCapsulesWithDb($capsulesFromSpaceX);
+        $capsulesFromSpaceX = $capsuleService->fetchAllDataFromApi();
+        $isSyncSuccessful = $capsuleService->createCapsulesWithMissions($capsulesFromSpaceX);
 
-        if ($syncCapsulesToDb) {
+        if ($isSyncSuccessful) {
             $this->info('All data from SpaceX Api has been synced to database.');
             DbSyncDoneEvent::dispatch($capsulesFromSpaceX);
         } else {
