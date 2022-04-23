@@ -21,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('capsules', [CapsuleController::class, 'index'])->middleware('auth:sanctum');
 Route::get('capsules/{capsule:capsule_serial}', [CapsuleController::class, 'show'])->middleware('auth:sanctum');
+
+Route::get('test', function () {
+    return view('app');
+});
