@@ -26,18 +26,17 @@ class AuthController extends Controller
 
         return response()->json($user, 201);
     }
-
     /**
      * Log the user in.
      * 
-     * @param  Request  $request
+     * @param  LoginRequest  $request
      * @return Response
      */
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
 
-        $user = User::where('email', $credentials['mail'])->first();
+        $user = User::where('email', $credentials['email'])->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             throw ValidationException::withMessages([
@@ -60,6 +59,6 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json("USer Succesfully Logged Out!", 200);
+        return response()->json("User Succesfully Logged Out!", 200);
     }
 }

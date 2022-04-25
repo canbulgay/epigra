@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import CapsuleIndex from "../views/capsules/Index.vue";
 import CapsuleShow from "../views/capsules/Show.vue";
+import Register from "../views/auth/Register.vue";
+import Login from "../views/auth/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -30,6 +32,16 @@ const routes = [
         path: "/capsules/:capsule_serial",
         name: "Capsule",
         component: CapsuleShow,
+    },
+    {
+        path: "/register",
+        name: "Register",
+        component: Register,
+    },
+    {
+        path: "/login",
+        name: "Login",
+        component: Login,
     },
 ];
 

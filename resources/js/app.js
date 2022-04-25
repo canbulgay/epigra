@@ -7,9 +7,22 @@
 require("./bootstrap");
 import vuetify from "./plugins/vuetify";
 import App from "./App.vue";
-import vuex from "./store/index";
+import store from "./store/index";
 import router from "./router/index";
 import axios from "axios";
+
+axios.interceptors.request.use(
+    function (config) {
+        if (store.state.user) {
+            config.headers.Authorization = `Bearer ${store.state.user.token}`; // Add authorization header
+        }
+        return config;
+    },
+    function (error) {
+        // Do something with request error
+        return Promise.reject(error);
+    }
+);
 
 window.Vue = require("vue").default;
 
@@ -37,7 +50,7 @@ Vue.component(
 
 const app = new Vue({
     vuetify,
-    vuex,
+    store,
     router,
     el: "#app",
     render: (h) => h(App),

@@ -66,7 +66,7 @@ export default {
     methods: {
         getCapsules() {
             axios
-                .get("api/capsules")
+                .get("http://localhost/api/capsules")
                 .then((response) => {
                     console.log(response.data);
                     this.capsules = response.data;

@@ -79,7 +79,7 @@ export default {
     methods: {
         getCapsuleDetail() {
             axios
-                .get(`/api/capsules/${this.capsule_serial}`)
+                .get(`http://localhost/api/capsules/${this.capsule_serial}`)
                 .then((response) => {
                     this.capsule = response.data;
                     this.missions = response.data.missions;
