@@ -4,9 +4,14 @@
             <template v-slot:top>
                 <v-toolbar flat>
                     <v-toolbar-title>Capsules</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                    <v-toolbar-items>
+                        <h3>Status : {{ status }}</h3>
+                    </v-toolbar-items>
                     <v-divider class="mx-4" inset vertical></v-divider>
                 </v-toolbar>
                 <v-spacer></v-spacer>
+                <div></div>
             </template>
             <template v-slot:item="{ item }">
                 <tr>
@@ -63,6 +68,15 @@ export default {
             ],
         };
     },
+    computed: {
+        status() {
+            if (this.$route.query.status) {
+                return this.$route.query.status;
+            } else {
+                return "All";
+            }
+        },
+    },
     methods: {
         getCapsules() {
             axios
@@ -75,9 +89,24 @@ export default {
                     console.log(error);
                 });
         },
+        getCapsulesByStatus() {
+            axios
+                .get(`http://localhost/api/${this.status}/capsules`)
+                .then((response) => {
+                    console.log(response.data);
+                    this.capsules = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
     },
     beforeMount() {
-        this.getCapsules();
+        if (this.$route.query.status) {
+            this.getCapsulesByStatus();
+        } else {
+            this.getCapsules();
+        }
     },
 };
 </script>
