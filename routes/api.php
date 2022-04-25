@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('capsules', [CapsuleController::class, 'index'])->middleware('auth:sanctum');
-Route::get('capsules/{capsule:capsule_serial}', [CapsuleController::class, 'show'])->middleware('auth:sanctum');
+Route::get('capsules', [CapsuleController::class, 'index']);
+Route::get('capsules/{capsule_serial}', [CapsuleController::class, 'show']);
 
 Route::get('test', function () {
     return view('app');

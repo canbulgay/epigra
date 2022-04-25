@@ -10,6 +10,10 @@
                     <v-icon>mdi-information-outline</v-icon>
                     <span class="mx-2">About</span>
                 </v-btn>
+                <v-btn to="/capsules">
+                    <v-icon>mdi-information-outline</v-icon>
+                    <span class="mx-2">Capsules</span>
+                </v-btn>
             </div>
 
             <v-spacer></v-spacer>

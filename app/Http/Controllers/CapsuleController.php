@@ -44,7 +44,7 @@ class CapsuleController extends Controller
      */
     public function show($serial)
     {
-        $capsule = $this->capsuleRepository->getCapsuleBySerial($$serial);
+        $capsule = $this->capsuleRepository->getCapsuleBySerial($serial);
         return response()->json($capsule, 200);
     }
 }
