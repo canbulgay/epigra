@@ -20,10 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('capsules', [CapsuleController::class, 'index']);
-Route::get('capsules/{capsule_serial}', [CapsuleController::class, 'show']);
-Route::get('capsules/{capsule_status}', [CapsuleController::class, 'getCapsulesByStatus']);
+Route::get('capsules', [CapsuleController::class, 'index'])->middleware('auth:sanctum');
+Route::get('capsules/{capsule_serial}', [CapsuleController::class, 'show'])->middleware('auth:sanctum');
+Route::get('capsules/{capsule_status}', [CapsuleController::class, 'getCapsulesByStatus'])->middleware('auth:sanctum');
 
 Route::post('/register', [AuthController::class, 'register'])->middleware('guest');
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
