@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CapsuleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('capsules', [CapsuleController::class, 'index']);
 Route::get('capsules/{capsule_serial}', [CapsuleController::class, 'show']);
+Route::get('capsules/{capsule_status}', [CapsuleController::class, 'getCapsulesByStatus']);
 
-Route::get('test', function () {
-    return view('app');
-});
+Route::post('/register', [AuthController::class, 'register'])->middleware('guest');
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
