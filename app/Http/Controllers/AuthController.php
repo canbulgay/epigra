@@ -15,7 +15,7 @@ class AuthController extends Controller
      * Create a user via credentials.
      * 
      * @param  RegisterRequest  $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function register(RegisterRequest $request)
     {
@@ -30,7 +30,7 @@ class AuthController extends Controller
      * Log the user in.
      * 
      * @param  LoginRequest  $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function login(LoginRequest $request)
     {
@@ -53,7 +53,7 @@ class AuthController extends Controller
      * Log the user out.
      * 
      * @param  Request  $request
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
     {

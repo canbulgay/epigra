@@ -6,10 +6,6 @@
                     <v-icon>mdi-home</v-icon>
                     <span class="mx-2">Home</span>
                 </v-btn>
-                <v-btn to="/about">
-                    <v-icon>mdi-information-outline</v-icon>
-                    <span class="mx-2">About</span>
-                </v-btn>
                 <v-btn v-if="_isAuthenticated" to="/capsules">
                     <v-icon>mdi-rocket</v-icon>
                     <span class="mx-2">Capsules</span>

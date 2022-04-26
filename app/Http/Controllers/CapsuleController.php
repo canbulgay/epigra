@@ -8,6 +8,10 @@ class CapsuleController extends Controller
 {
     private $capsuleRepository;
 
+    /**
+     * Create a new controller instance.
+     * @param CapsuleRepositoryInterface $capsuleRepository
+     */
     public function __construct(CapsuleRepositoryInterface $capsuleRepository)
     {
         $this->capsuleRepository = $capsuleRepository;

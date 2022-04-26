@@ -10,17 +10,7 @@ use Illuminate\Support\Facades\Log;
 class SyncCompletedLogListener
 {
     /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Handle the event.
+     * Log the event.
      *
      * @param  \App\Events\DbSyncDoneEvent  $event
      * @return void

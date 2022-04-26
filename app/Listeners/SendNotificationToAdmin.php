@@ -9,7 +9,7 @@ use App\Notifications\SyncTaskDoneNotification;
 class SendNotificationToAdmin
 {
     /**
-     * Handle the event.
+     * Send notification to admin event.
      *
      * @param  \App\Events\DbSyncDoneEvent  $event
      * @return void
