@@ -19,6 +19,6 @@ class CapsuleRepository implements CapsuleRepositoryInterface
 
     public function getCapsuleBySerial($serial)
     {
-        return Capsule::with('missions')->where('capsule_serial', $serial)->first();
+        return Capsule::with('missions')->where('capsule_serial', $serial)->firstOrFail();
     }
 }
