@@ -12,10 +12,52 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     /**
-     * Create a user via credentials.
-     * 
-     * @param  RegisterRequest  $request
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *      path="/api/register",
+     *      tags={"Authentication"},
+     *      operationId="register",
+     *      @OA\Parameter(
+     *          name="name",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="email",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="password_confirmation",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Success"
+     *      )
+     * )
+     *
+     * Register new user via given credentials.
+     *
+     * @param RegisterRequest $request
+     * @return void
      */
     public function register(RegisterRequest $request)
     {
@@ -27,10 +69,36 @@ class AuthController extends Controller
         return response()->json($user, 201);
     }
     /**
-     * Log the user in.
-     * 
-     * @param  LoginRequest  $request
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *      path="/api/login",
+     *      tags={"Authentication"},
+     *      operationId="login",
+     *      @OA\Parameter(
+     *          name="email",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="password",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success"
+     *      )
+     * )
+     *
+     * Logs user into the system.
+     *
+     * @param LoginRequest $request
+     * @return void
      */
     public function login(LoginRequest $request)
     {
@@ -50,9 +118,22 @@ class AuthController extends Controller
     }
 
     /**
-     * Log the user out.
-     * 
-     * @param  Request  $request
+     * @OA\Post(
+     *     path="/api/logout",
+     *      tags={"Authentication"},
+     *     operationId="logout",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success"
+     *     ),
+     *     security={
+     *         {"bearer": {}}
+     *     }
+     * )
+     *
+     * Logs out current logged in user session.
+     *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function logout(Request $request)
